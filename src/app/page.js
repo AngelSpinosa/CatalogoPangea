@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -17,6 +18,14 @@ export default function Home() {
     };
     fetchProducts();
   }, []);
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const filteredProducts = products.filter((product) =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div>
@@ -37,10 +46,12 @@ export default function Home() {
             type="text"
             placeholder="Buscar productos..."
             className="w-full p-2 mb-4 border border-[#321680] rounded-lg"
+            value={searchTerm}
+            onChange={handleSearchChange}
           />
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard key={product.id} {...product} />
           ))}
         </div>

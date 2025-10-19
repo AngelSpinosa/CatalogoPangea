@@ -11,7 +11,7 @@ return (
         <div className="max-w-6xl mx-auto flex items-center justify-center gap-16 px-4 py-2">
             {/* Menú izquierdo */}
             <nav className="flex gap-6">
-                <Link href="/productos" className="hover:underline">
+                <Link href="/" className="hover:underline">
                     Productos
                 </Link>
                 <Link href="/personalizados" className="hover:underline">
